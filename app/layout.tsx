@@ -6,6 +6,7 @@ import "./globals.css";
 const display = Inter({
   subsets: ["latin"],
   variable: "--font-display",
+  style: ["normal", "italic"],
   weight: ["400", "700", "800"],
 });
 
@@ -16,9 +17,24 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  // TODO: update to the real production domain once known
+  metadataBase: new URL("https://pyxis-landing.vercel.app"),
   title: "Pyxis — Wholesalers sin operación manual",
   description:
     "Pyxis transforma wholesalers en operaciones de cero personas mediante integraciones y agentes que eliminan los cuellos de botella operativos.",
+  openGraph: {
+    title: "Pyxis — Wholesalers sin operación manual",
+    description:
+      "Pyxis transforma wholesalers en operaciones de cero personas mediante integraciones y agentes que eliminan los cuellos de botella operativos.",
+    type: "website",
+    locale: "es_ES",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pyxis — Wholesalers sin operación manual",
+    description:
+      "Pyxis transforma wholesalers en operaciones de cero personas mediante integraciones y agentes que eliminan los cuellos de botella operativos.",
+  },
 };
 
 export default function RootLayout({
