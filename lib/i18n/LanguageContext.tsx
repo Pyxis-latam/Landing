@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { dictionaries, type Lang, type Dictionary } from "./dictionary";
 
 type LanguageContextValue = {
@@ -15,6 +21,10 @@ const LanguageContext = createContext<LanguageContextValue | undefined>(
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("es");
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const toggleLang = () => setLang((prev) => (prev === "es" ? "en" : "es"));
 

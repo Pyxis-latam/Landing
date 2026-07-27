@@ -22,7 +22,7 @@ export function Vision() {
 
       <div className="relative mt-20">
         <svg
-          className="absolute left-0 top-6 hidden w-full sm:block"
+          className="absolute left-0 top-[5px] hidden w-full sm:block"
           height="2"
           preserveAspectRatio="none"
           data-testid="vision-line"
