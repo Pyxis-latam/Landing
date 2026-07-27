@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { LanguageToggle } from "./ui/LanguageToggle";
 import { MailtoButton } from "./ui/MailtoButton";
+import { PyxisCompass } from "./PyxisCompass";
 
 export function Header() {
   const { t } = useLanguage();
@@ -19,6 +20,7 @@ export function Header() {
     { href: "#problem", label: t.nav.problem },
     { href: "#how-it-works", label: t.nav.howItWorks },
     { href: "#vision", label: t.nav.vision },
+    { href: "#expansion", label: t.nav.expansion },
     { href: "#team", label: t.nav.team },
   ];
 
@@ -30,9 +32,12 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <span className="font-display text-sm font-bold tracking-widest text-pyxis-fg">
-          PYXIS
-        </span>
+        <a href="#top" className="flex items-center gap-2">
+          <PyxisCompass size={28} />
+          <span className="font-display text-sm font-bold tracking-widest text-pyxis-fg">
+            PYXIS
+          </span>
+        </a>
         <nav className="hidden gap-8 md:flex">
           {navItems.map((item) => (
             <a

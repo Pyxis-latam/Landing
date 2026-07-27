@@ -22,6 +22,13 @@
 
 body {
   position: relative;
+  background-color: var(--color-pyxis-bg);
+  /* Faint nebula clouds drifting behind the whole page */
+  background-image:
+    radial-gradient(40% 50% at 12% 8%, rgba(217, 165, 77, 0.07), transparent 60%),
+    radial-gradient(45% 55% at 88% 18%, rgba(70, 100, 165, 0.09), transparent 65%),
+    radial-gradient(55% 60% at 50% 105%, rgba(217, 165, 77, 0.05), transparent 70%);
+  background-attachment: fixed;
 }
 
 body::before {

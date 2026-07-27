@@ -4,6 +4,7 @@ import { SocialProof } from "@/components/SocialProof";
 import { Problem } from "@/components/Problem";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Vision } from "@/components/Vision";
+import { GlobeExpansion } from "@/components/GlobeExpansion";
 import { Team } from "@/components/Team";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
@@ -18,6 +19,7 @@ export default function Home() {
         <Problem />
         <HowItWorks />
         <Vision />
+        <GlobeExpansion />
         <Team />
         <FinalCta />
       </main>

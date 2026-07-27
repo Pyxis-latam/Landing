@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { ParticleField } from "./ParticleField";
+import { Comet } from "./Comet";
+import { PyxisCompass } from "./PyxisCompass";
 import { MailtoButton } from "./ui/MailtoButton";
 import { Emphasis } from "./ui/Emphasis";
 
@@ -24,17 +26,22 @@ export function Hero() {
 
   return (
     <section
+      id="top"
       ref={sectionRef}
       className="relative flex min-h-screen items-center overflow-hidden bg-pyxis-bg"
     >
       <ParticleField />
+      <Comet />
       <motion.div
         style={{ y: headlineY }}
         className="relative z-10 mx-auto max-w-4xl px-6 text-center"
       >
-        <p className="font-mono-label mb-6 text-xs tracking-[0.3em] text-pyxis-accent">
-          {t.hero.eyebrow}
-        </p>
+        <div className="mb-6 flex flex-col items-center gap-3">
+          <PyxisCompass size={72} />
+          <p className="font-mono-label text-xs tracking-[0.3em] text-pyxis-accent">
+            {t.hero.eyebrow}
+          </p>
+        </div>
         <h1 className="font-display text-4xl font-extrabold leading-tight text-pyxis-fg sm:text-6xl">
           {t.hero.headlinePre} <Emphasis>{t.hero.headlineEmphasis}</Emphasis>
         </h1>
