@@ -49,6 +49,7 @@ export const dictionaries = {
       headlinePre: "Más eficiente, más potente,",
       headlineEmphasis: "el mismo tamaño",
       body: "No expandimos ni achicamos tu empresa: la recomponemos. Encontramos dónde se pierde tiempo, energía y margen, y rediseñamos la operación para que cada persona y cada proceso rinda más.",
+      diagramLabel: "Recomposición: las mismas doce personas y procesos, primero enredados, después ordenados alrededor de un centro claro.",
       steps: [
         {
           number: "01",
@@ -92,6 +93,8 @@ export const dictionaries = {
       headlinePre: "Hermes, el",
       headlineEmphasis: "Zero Man Wholesaler",
       body: "Hermes es una distribuidora de tintas, cartridges e impresoras que opera sin personas. Compra, vende y despacha insumos de oficina de forma autónoma, de punta a punta. Hoy está en piloto en Chile.",
+      diagramLabel: "El ciclo de Hermes: compra, venta y despacho encadenados en un circuito continuo, sin nadie en el centro.",
+      loopCenter: "0 PERSONAS",
       pillars: [
         {
           number: "01",
@@ -182,6 +185,11 @@ export const dictionaries = {
       body: "Hablemos de recomponer tu operación con Pyxis Labs, o de lo que Pyxis Ventures está construyendo con Hermes.",
       cta: "Hablemos",
     },
+    notFound: {
+      title: "Esta página se salió del mapa",
+      body: "El enlace no lleva a ningún lugar de Pyxis. Volvamos al inicio y retomemos el rumbo.",
+      cta: "Volver al inicio",
+    },
     contact: {
       eyebrow: "Contacto",
       title: "Escríbenos",
@@ -249,6 +257,7 @@ export const dictionaries = {
       headlinePre: "More efficient, more powerful,",
       headlineEmphasis: "the same size",
       body: "We don't grow or shrink your company: we recompose it. We find where time, energy and margin leak away, and redesign the operation so every person and every process delivers more.",
+      diagramLabel: "Recomposition: the same twelve people and processes, tangled at first, then arranged around one clear centre.",
       steps: [
         {
           number: "01",
@@ -292,6 +301,8 @@ export const dictionaries = {
       headlinePre: "Hermes, the",
       headlineEmphasis: "Zero Man Wholesaler",
       body: "Hermes is a distributor of inks, cartridges and printers that runs without people. It buys, sells and ships office supplies autonomously, end to end. Today it is piloting in Chile.",
+      diagramLabel: "The Hermes loop: buying, selling and shipping chained into one continuous circuit, with nobody in the middle.",
+      loopCenter: "0 PEOPLE",
       pillars: [
         {
           number: "01",
@@ -381,6 +392,11 @@ export const dictionaries = {
       headlineEmphasis: "without getting bigger",
       body: "Let's talk about recomposing your operation with Pyxis Labs, or about what Pyxis Ventures is building with Hermes.",
       cta: "Let's talk",
+    },
+    notFound: {
+      title: "This page is off the map",
+      body: "That link doesn't lead anywhere in Pyxis. Let's head back to the start and find our bearing.",
+      cta: "Back to the start",
     },
     contact: {
       eyebrow: "Contact",

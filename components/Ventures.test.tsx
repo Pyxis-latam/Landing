@@ -18,7 +18,7 @@ it("renders the Ventures section under the #ventures anchor introducing Hermes",
 
 it("renders the three pillars of the autonomous distributor", () => {
   renderVentures();
-  expect(screen.getByText("Compra")).toBeInTheDocument();
-  expect(screen.getByText("Venta")).toBeInTheDocument();
-  expect(screen.getByText("Despacho")).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "Compra" })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "Venta" })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "Despacho" })).toBeInTheDocument();
 });

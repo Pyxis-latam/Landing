@@ -1,0 +1,44 @@
+const SITE = "https://www.pyxis-latam.cl";
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Pyxis",
+  url: SITE,
+  logo: `${SITE}/icon`,
+  email: "pyxis.latam@gmail.com",
+  description:
+    "Pyxis Labs recompone empresas existentes para hacerlas más eficientes y potentes sin cambiar su tamaño. Pyxis Ventures construye empresas que operan sin personas: Hermes, el Zero Man Wholesaler, es la primera.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Santiago",
+    addressCountry: "CL",
+  },
+  founder: [
+    {
+      "@type": "Person",
+      name: "Vicente Pareja",
+      jobTitle: "Chief Executive Officer",
+      sameAs: "https://www.linkedin.com/in/vicentepareja/",
+    },
+    {
+      "@type": "Person",
+      name: "Felipe Carvallo Lancellotti",
+      jobTitle: "Chief Deployment Officer",
+      sameAs: "https://www.linkedin.com/in/felipe-carvallo-lancellotti-228615276/",
+    },
+  ],
+  subOrganization: [
+    { "@type": "Organization", name: "Pyxis Labs", parentOrganization: { "@type": "Organization", name: "Pyxis" } },
+    { "@type": "Organization", name: "Pyxis Ventures", parentOrganization: { "@type": "Organization", name: "Pyxis" } },
+  ],
+};
+
+export function OrganizationJsonLd() {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
+    />
+  );
+}

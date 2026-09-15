@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 
@@ -40,5 +40,38 @@ describe("LanguageContext", () => {
 
     await user.click(screen.getByText("toggle"));
     expect(screen.getByTestId("lang")).toHaveTextContent("es");
+  });
+});
+
+describe("LanguageContext persistence", () => {
+  beforeEach(() => window.localStorage.clear());
+
+  it("remembers the chosen language for the next visit", async () => {
+    const user = userEvent.setup();
+    const { unmount } = render(
+      <LanguageProvider>
+        <Probe />
+      </LanguageProvider>
+    );
+    await user.click(screen.getByText("toggle"));
+    expect(window.localStorage.getItem("pyxis-lang")).toBe("en");
+    unmount();
+
+    render(
+      <LanguageProvider>
+        <Probe />
+      </LanguageProvider>
+    );
+    await waitFor(() => expect(screen.getByTestId("lang")).toHaveTextContent("en"));
+  });
+
+  it("ignores garbage in storage and stays in Spanish", async () => {
+    window.localStorage.setItem("pyxis-lang", "klingon");
+    render(
+      <LanguageProvider>
+        <Probe />
+      </LanguageProvider>
+    );
+    await waitFor(() => expect(screen.getByTestId("lang")).toHaveTextContent("es"));
   });
 });

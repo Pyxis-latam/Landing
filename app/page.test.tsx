@@ -3,6 +3,9 @@ import userEvent from "@testing-library/user-event";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import Home from "./page";
 
+// The language choice persists in localStorage; keep tests independent.
+beforeEach(() => window.localStorage.clear());
+
 it("renders every section of the landing page", () => {
   render(
     <LanguageProvider>

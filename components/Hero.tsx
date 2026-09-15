@@ -21,13 +21,16 @@ export function Hero() {
   const headlineOpacity = useTransform(scrollYProgress, [0, 0.7], [1, shouldReduceMotion ? 1 : 0.15]);
 
   const words = t.hero.headlinePre.split(" ");
+  // The headline and subheadline are the page's largest paint, so they enter
+  // with motion and blur only, never from opacity 0: the text is on screen
+  // from the first paint instead of waiting for hydration.
   const enter = (i: number) =>
     shouldReduceMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 18, filter: "blur(6px)" },
-          animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-          transition: { duration: 0.7, delay: 0.25 + i * 0.045, ease: [0.22, 1, 0.36, 1] as const },
+          initial: { y: 14, filter: "blur(5px)" },
+          animate: { y: 0, filter: "blur(0px)" },
+          transition: { duration: 0.6, delay: 0.1 + i * 0.04, ease: [0.22, 1, 0.36, 1] as const },
         };
 
   return (
@@ -75,9 +78,9 @@ export function Hero() {
 
         <motion.p
           className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-pyxis-fg/70 sm:text-lg"
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.75, ease: "easeOut" }}
+          initial={shouldReduceMotion ? false : { y: 10 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
         >
           {t.hero.subheadline}
         </motion.p>

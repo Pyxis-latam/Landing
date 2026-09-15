@@ -51,7 +51,7 @@ export function Footer() {
             <LanguageToggle />
           </div>
         </div>
-        <div className="flex flex-col gap-2 border-t border-pyxis-line pt-6 text-xs text-pyxis-fg/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-pyxis-line pt-6 text-xs text-pyxis-fg/60 sm:flex-row sm:items-center sm:justify-between">
           <span>
             © {year} {t.footer.copyright}
           </span>

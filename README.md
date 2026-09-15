@@ -77,6 +77,29 @@ small labels. All three load through `next/font/google` in `app/layout.tsx`.
 - `components/ui/SpotlightCard.tsx` — the glass panel used by the division and
   team cards: hairline border, top light catch and a brass spotlight that
   follows the cursor.
+- `components/diagrams/Recomposition.tsx` — Labs figure: twelve nodes that
+  start tangled and settle around one hub when scrolled into view (same node
+  count before and after).
+- `components/diagrams/HermesLoop.tsx` — Ventures figure: a closed loop through
+  Compra → Venta → Despacho with one pulse of light running it, empty centre.
+- `components/GlobeSection.tsx` — placeholder that keeps the `#expansion`
+  anchor and only downloads three.js and the night texture when the visitor
+  scrolls within ~800px of the section.
+
+## Contact
+
+Every "Hablemos" button is a real `mailto:` link, but a plain click opens
+`components/ContactDialog.tsx` (state in `lib/contact/ContactContext.tsx`)
+with the address, a Copy button and a Gmail compose link, because `mailto:`
+alone does nothing on machines without a default mail client.
+
+## Site plumbing
+
+`app/not-found.tsx` (branded 404), `app/icon.svg` + `app/icon.tsx` (favicon),
+`app/apple-icon.tsx` (home-screen icon), `app/robots.ts`, `app/sitemap.ts`
+and `components/OrganizationJsonLd.tsx` (schema.org Organization). The
+language choice persists in `localStorage` under `pyxis-lang`; the header
+highlights the section on screen via `lib/useActiveSection.ts`.
 - `components/GlobeExpansion.tsx` — a full-screen, photorealistic 3D night globe
   (three.js + WebGL) that spins from Chile → Mexico → Brazil & Paraguay when you
   press the arrows. It shows vector **country borders** (the focused country is
