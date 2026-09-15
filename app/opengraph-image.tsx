@@ -27,14 +27,12 @@ export default function OpengraphImage() {
           <line x1="94" y1="50" x2="87" y2="50" stroke="#D9A54D" strokeWidth="1.6" />
           <line x1="50" y1="94" x2="50" y2="87" stroke="#D9A54D" strokeWidth="1.6" />
           <line x1="6" y1="50" x2="13" y2="50" stroke="#D9A54D" strokeWidth="1.6" />
-          <path d="M50 12 L55.5 50 L44.5 50 Z" fill="#EAC57C" />
-          <path d="M50 88 L55.5 50 L44.5 50 Z" fill="#F2F1EE" fillOpacity="0.25" />
-          <line x1="22" y1="50" x2="78" y2="50" stroke="#F2F1EE" strokeOpacity="0.3" strokeWidth="1" />
-          <circle cx="64" cy="22" r="2.2" fill="#F2F1EE" />
-          <circle cx="70" cy="33" r="1.6" fill="#F2F1EE" />
-          <circle cx="74" cy="45" r="1.9" fill="#F2F1EE" />
-          <circle cx="80" cy="57" r="1.3" fill="#F2F1EE" />
-          <circle cx="50" cy="50" r="3.2" fill="#07080b" stroke="#D9A54D" strokeWidth="1.4" />
+          <circle cx="50" cy="50" r="33" stroke="#D9A54D" strokeOpacity="0.25" strokeWidth="0.8" strokeDasharray="0.8 3.4" />
+          <path d="M78 50 L50 54.5 L50 45.5 Z" fill="#D9A54D" fillOpacity="0.45" />
+          <path d="M22 50 L50 54.5 L50 45.5 Z" fill="#D9A54D" fillOpacity="0.45" />
+          <path d="M50 88 L56 50 L44 50 Z" fill="#F2F1EE" fillOpacity="0.26" />
+          <path d="M50 8 L56 50 L44 50 Z" fill="#EAC57C" />
+          <circle cx="50" cy="50" r="3.4" fill="#07080b" stroke="#D9A54D" strokeWidth="1.4" />
         </svg>
         <div
           style={{
