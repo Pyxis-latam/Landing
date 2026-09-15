@@ -21,7 +21,7 @@ describe("LanguageContext", () => {
       </LanguageProvider>
     );
     expect(screen.getByTestId("lang")).toHaveTextContent("es");
-    expect(screen.getByTestId("headline")).toHaveTextContent("cero personas");
+    expect(screen.getByTestId("headline")).toHaveTextContent("sin personas");
   });
 
   it("toggles to English and back", async () => {
@@ -35,7 +35,7 @@ describe("LanguageContext", () => {
     await user.click(screen.getByText("toggle"));
     expect(screen.getByTestId("lang")).toHaveTextContent("en");
     expect(screen.getByTestId("headline")).toHaveTextContent(
-      "zero-person operations"
+      "without people"
     );
 
     await user.click(screen.getByText("toggle"));

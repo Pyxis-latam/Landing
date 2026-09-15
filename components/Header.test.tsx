@@ -13,8 +13,8 @@ function renderHeader() {
 describe("Header", () => {
   it("renders nav items in Spanish by default", () => {
     renderHeader();
-    expect(screen.getByText("Problema")).toBeInTheDocument();
-    expect(screen.getByText("Cómo funciona")).toBeInTheDocument();
+    expect(screen.getByText("Pyxis Labs")).toBeInTheDocument();
+    expect(screen.getByText("Pyxis Ventures")).toBeInTheDocument();
   });
 
   it("shows a solid background after scrolling", () => {

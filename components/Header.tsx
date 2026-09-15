@@ -17,10 +17,8 @@ export function Header() {
   }, []);
 
   const navItems = [
-    { href: "#problem", label: t.nav.problem },
-    { href: "#how-it-works", label: t.nav.howItWorks },
-    { href: "#vision", label: t.nav.vision },
-    { href: "#expansion", label: t.nav.expansion },
+    { href: "#labs", label: t.nav.labs },
+    { href: "#ventures", label: t.nav.ventures },
     { href: "#team", label: t.nav.team },
   ];
 

@@ -1,6 +1,23 @@
 # Pyxis Landing Page
 
-Landing page for Pyxis — we transform wholesaler companies into 0-person operations.
+Landing page for Pyxis, a group with two divisions:
+
+- **Pyxis Labs** — recomposes existing companies: makes them more efficient and
+  more powerful without growing or shrinking them. Pilot: a 100+ person retailer
+  in Chile; next verticals are the retail niche, then furniture and construction.
+- **Pyxis Ventures** — builds companies that run without people. The first is
+  **Hermes**, the "Zero Man Wholesaler": a distributor of inks, cartridges and
+  printers piloting in Chile and expanding country by country.
+
+## Page structure
+
+`app/page.tsx` composes, in order: `Header` → `Hero` (umbrella statement) →
+`SocialProof` → `Divisions` (two cards linking to `#labs` / `#ventures`) →
+`Labs` (recomposition steps + growth timeline by vertical) → `Ventures` (Hermes
+intro + pillars) → `GlobeExpansion` (Hermes country map) → `Team` → `FinalCta` →
+`Footer`. All copy, in Spanish and English, lives in `lib/i18n/dictionary.ts`.
+`components/ui/StepGrid.tsx` and `components/ui/PhaseTimeline.tsx` are the
+shared primitives for the three-column steps and the animated timeline.
 
 ## Local development
 

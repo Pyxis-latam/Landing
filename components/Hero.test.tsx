@@ -8,7 +8,7 @@ it("renders the Spanish headline, particle background, and CTA", () => {
       <Hero />
     </LanguageProvider>
   );
-  expect(screen.getByText("cero personas")).toBeInTheDocument();
+  expect(screen.getByText("sin personas")).toBeInTheDocument();
   expect(screen.getByTestId("particle-field")).toBeInTheDocument();
   expect(screen.getByText("Hablemos").closest("a")).toHaveAttribute(
     "href",

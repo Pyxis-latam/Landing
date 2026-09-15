@@ -8,7 +8,7 @@ it("renders the closing statement and mailto CTA", () => {
       <FinalCta />
     </LanguageProvider>
   );
-  expect(screen.getByText("autónomo")).toBeInTheDocument();
+  expect(screen.getByText("sin ser más grande")).toBeInTheDocument();
   expect(screen.getByText("Hablemos").closest("a")).toHaveAttribute(
     "href",
     expect.stringContaining("mailto:pyxis.latam@gmail.com")

@@ -32,7 +32,7 @@ export default function OpengraphImage() {
           PYXIS
         </div>
         <div style={{ marginTop: 24, color: "#D9A54D" }}>
-          Transformamos wholesalers en operaciones de cero personas
+          Recomponemos empresas y construimos las que operan sin personas
         </div>
       </div>
     ),

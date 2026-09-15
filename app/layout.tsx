@@ -19,21 +19,21 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   // TODO: update to the real production domain once known
   metadataBase: new URL("https://pyxis-landing.vercel.app"),
-  title: "Pyxis — Wholesalers sin operación manual",
+  title: "Pyxis — Recomponemos empresas y construimos las que operan sin personas",
   description:
-    "Pyxis transforma wholesalers en operaciones de cero personas mediante integraciones y agentes que eliminan los cuellos de botella operativos.",
+    "Pyxis Labs recompone empresas existentes para hacerlas más eficientes y potentes sin cambiar su tamaño. Pyxis Ventures construye empresas que operan sin personas: Hermes, el Zero Man Wholesaler, es la primera.",
   openGraph: {
-    title: "Pyxis — Wholesalers sin operación manual",
+    title: "Pyxis — Recomponemos empresas y construimos las que operan sin personas",
     description:
-      "Pyxis transforma wholesalers en operaciones de cero personas mediante integraciones y agentes que eliminan los cuellos de botella operativos.",
+      "Pyxis Labs recompone empresas existentes para hacerlas más eficientes y potentes sin cambiar su tamaño. Pyxis Ventures construye empresas que operan sin personas: Hermes, el Zero Man Wholesaler, es la primera.",
     type: "website",
     locale: "es_ES",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pyxis — Wholesalers sin operación manual",
+    title: "Pyxis — Recomponemos empresas y construimos las que operan sin personas",
     description:
-      "Pyxis transforma wholesalers en operaciones de cero personas mediante integraciones y agentes que eliminan los cuellos de botella operativos.",
+      "Pyxis Labs recompone empresas existentes para hacerlas más eficientes y potentes sin cambiar su tamaño. Pyxis Ventures construye empresas que operan sin personas: Hermes, el Zero Man Wholesaler, es la primera.",
   },
 };
 
