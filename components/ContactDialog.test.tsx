@@ -27,7 +27,7 @@ describe("ContactDialog", () => {
     expect(dialog).toHaveTextContent("pyxis.latam@gmail.com");
   });
 
-  it("offers Gmail and the mail app as ways to write, both addressed to Pyxis", () => {
+  it("offers Gmail as the one way to write, addressed to Pyxis, and no mail-app button", () => {
     renderWithDialog();
     fireEvent.click(screen.getByRole("link", { name: "Hablemos" }));
 
@@ -39,8 +39,9 @@ describe("ContactDialog", () => {
     expect(gmail).toHaveAttribute("href", expect.stringContaining("pyxis.latam%40gmail.com"));
     expect(gmail).toHaveAttribute("target", "_blank");
 
-    const mailApp = screen.getByRole("link", { name: /app de correo/i });
-    expect(mailApp).toHaveAttribute("href", expect.stringMatching(/^mailto:pyxis\.latam@gmail\.com/));
+    expect(screen.queryByRole("link", { name: /app de correo|mail app/i })).not.toBeInTheDocument();
+    const dialogLinks = screen.getByRole("dialog").querySelectorAll('a[href^="mailto:"]');
+    expect(dialogLinks).toHaveLength(0);
   });
 
   it("copies the email to the clipboard and confirms it", async () => {

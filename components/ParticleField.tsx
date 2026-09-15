@@ -25,6 +25,22 @@ type ShootingStar = {
 };
 
 const MAX_DPR = 2;
+// How far (css px) the nearest stars slide when the pointer crosses the screen.
+const POINTER_SHIFT = 14;
+
+// The constellation Pyxis (the mariner's compass): α, β, γ and δ Pyxidis,
+// as fractions of the viewport, drawn faintly in the hero sky.
+const PYXIS = [
+  { x: 0.78, y: 0.16, r: 2.2 }, // α
+  { x: 0.755, y: 0.27, r: 1.6 }, // β
+  { x: 0.735, y: 0.37, r: 1.9 }, // γ
+  { x: 0.81, y: 0.33, r: 1.2 }, // δ
+];
+const PYXIS_LINES: [number, number][] = [
+  [0, 1],
+  [1, 2],
+  [1, 3],
+];
 
 // One star per ~9000 css px², so a phone gets ~60 stars and a desktop ~150.
 function starCount(width: number, height: number) {
@@ -64,9 +80,10 @@ function spawnShootingStar(width: number, height: number): ShootingStar {
 }
 
 /**
- * Starfield with two things a flat particle canvas lacks: depth (near stars are
- * larger, brighter, drift faster and parallax against the scroll) and a
- * DPR-aware bitmap so the stars stay crisp on retina displays.
+ * Starfield with depth: near stars are larger, brighter, drift faster,
+ * parallax against the scroll and, on devices with a mouse, lean gently
+ * toward the pointer. DPR-aware so stars stay crisp on retina displays.
+ * The constellation Pyxis sits in the hero sky and fades as you scroll.
  */
 export function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -81,11 +98,18 @@ export function ParticleField() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
 
     let width = 0;
     let height = 0;
     let particles: Particle[] = [];
     let shootingStars: ShootingStar[] = [];
+
+    // Pointer parallax target (-1..1) and the eased value actually drawn.
+    let targetPx = 0;
+    let targetPy = 0;
+    let px = 0;
+    let py = 0;
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
@@ -99,18 +123,64 @@ export function ParticleField() {
     resize();
     window.addEventListener("resize", resize);
 
+    const onPointerMove = (event: PointerEvent) => {
+      targetPx = (event.clientX / width) * 2 - 1;
+      targetPy = (event.clientY / height) * 2 - 1;
+    };
+    if (finePointer && !prefersReducedMotion) {
+      window.addEventListener("pointermove", onPointerMove, { passive: true });
+    }
+
     let frame = 0;
     let animationId: number | undefined;
+
+    const drawConstellation = (scroll: number) => {
+      // Fully visible at the top, gone once the hero has scrolled away.
+      const visibility = Math.max(0, 1 - scroll / (height * 0.9));
+      if (visibility <= 0) return;
+      // On narrow screens the headline sits higher, so keep the figure in the top band.
+      const ky = width < 640 ? 0.55 : 1;
+      const pts = PYXIS.map((s) => ({
+        x: s.x * width + px * POINTER_SHIFT * 0.6,
+        y: s.y * height * ky - scroll * 0.1 + py * POINTER_SHIFT * 0.6,
+        r: s.r,
+      }));
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = `rgba(242, 241, 238, ${0.18 * visibility})`;
+      for (const [a, b] of PYXIS_LINES) {
+        ctx.beginPath();
+        ctx.moveTo(pts[a].x, pts[a].y);
+        ctx.lineTo(pts[b].x, pts[b].y);
+        ctx.stroke();
+      }
+      pts.forEach((p, i) => {
+        const tw = 0.7 + 0.3 * Math.sin(frame * 0.02 + i * 1.7);
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
+        g.addColorStop(0, `rgba(234, 197, 124, ${0.35 * tw * visibility})`);
+        g.addColorStop(1, "rgba(234, 197, 124, 0)");
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI * 2);
+        ctx.fillStyle = g;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(242, 241, 238, ${0.95 * tw * visibility})`;
+        ctx.fill();
+      });
+    };
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
       const scroll = window.scrollY || 0;
+      px += (targetPx - px) * 0.04;
+      py += (targetPy - py) * 0.04;
 
       for (const p of particles) {
         p.x = (p.x + p.driftX + width) % width;
         p.y = (p.y + p.driftY + height) % height;
-        // near stars slide up slightly faster than the page: parallax
-        const py = (p.y - scroll * p.depth * 0.12 + height * 4) % height;
+        // near stars slide faster than the page (scroll) and lean toward the pointer
+        const sx = p.x - px * POINTER_SHIFT * p.depth;
+        const sy = (p.y - scroll * p.depth * 0.12 - py * POINTER_SHIFT * p.depth + height * 4) % height;
         const twinkle =
           0.35 + 0.65 * Math.abs(Math.sin(frame * p.twinkleSpeed + p.twinkleOffset));
         const alpha = twinkle * (0.3 + p.depth * 0.55);
@@ -118,20 +188,22 @@ export function ParticleField() {
 
         if (p.depth > 0.8) {
           // soft halo on the nearest stars
-          const g = ctx.createRadialGradient(p.x, py, 0, p.x, py, p.radius * 5);
+          const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, p.radius * 5);
           g.addColorStop(0, `rgba(${rgb}, ${alpha * 0.35})`);
           g.addColorStop(1, `rgba(${rgb}, 0)`);
           ctx.beginPath();
-          ctx.arc(p.x, py, p.radius * 5, 0, Math.PI * 2);
+          ctx.arc(sx, sy, p.radius * 5, 0, Math.PI * 2);
           ctx.fillStyle = g;
           ctx.fill();
         }
 
         ctx.beginPath();
-        ctx.arc(p.x, py, p.radius, 0, Math.PI * 2);
+        ctx.arc(sx, sy, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${rgb}, ${alpha})`;
         ctx.fill();
       }
+
+      drawConstellation(scroll);
 
       if (!prefersReducedMotion && shootingStars.length < 1 && Math.random() < 0.0025) {
         shootingStars.push(spawnShootingStar(width, height));
@@ -166,6 +238,7 @@ export function ParticleField() {
 
     return () => {
       window.removeEventListener("resize", resize);
+      window.removeEventListener("pointermove", onPointerMove);
       if (animationId) cancelAnimationFrame(animationId);
     };
   }, []);

@@ -1,12 +1,16 @@
 "use client";
 
 import { useId } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
 /**
  * The Pyxis mark. Pyxis is the constellation of the mariner's compass, so the
  * mark is a compass rose: a single brass ring with four cardinal ticks and a
  * four-point star whose north point is long and bright, the rest quiet.
+ *
+ * Rotation uses SVG's own <animateTransform>, which pivots in viewBox units
+ * (50 50). CSS/framer transforms on SVG groups pivot on the group's bounding
+ * box instead, which made the ring wobble off-centre and clip the square.
  *
  * Below 48px the strokes thicken and the inner dial disappears so the mark
  * still reads in the header and as a favicon.
@@ -22,6 +26,7 @@ export function PyxisCompass({
   const id = useId().replace(/:/g, "");
   const small = size < 48;
   const sw = small ? 2.6 : 1.3;
+  const animate = !shouldReduceMotion;
 
   return (
     <svg
@@ -54,17 +59,23 @@ export function PyxisCompass({
 
       {!small && <circle cx="50" cy="50" r="50" fill={`url(#${id}-halo)`} />}
 
-      {/* Dial: one ring with cardinal ticks, turning very slowly */}
-      <motion.g
-        style={{ originX: "50px", originY: "50px" }}
-        animate={shouldReduceMotion ? undefined : { rotate: 360 }}
-        transition={{ duration: 160, ease: "linear", repeat: Infinity }}
-      >
+      {/* Dial: one ring with cardinal ticks, turning very slowly about the centre */}
+      <g>
+        {animate && (
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 50 50"
+            to="360 50 50"
+            dur="160s"
+            repeatCount="indefinite"
+          />
+        )}
         <circle
           cx="50"
           cy="50"
           r="45"
-          stroke={`url(#${id}-brass`}
+          stroke={`url(#${id}-brass)`}
           strokeOpacity={small ? 0.95 : 0.75}
           strokeWidth={sw}
         />
@@ -93,15 +104,22 @@ export function PyxisCompass({
             strokeDasharray="0.8 3.4"
           />
         )}
-      </motion.g>
+      </g>
 
       {/* Rose: settles like a real needle, then holds north */}
-      <motion.g
-        style={{ originX: "50px", originY: "50px" }}
-        initial={shouldReduceMotion ? false : { rotate: -16 }}
-        animate={shouldReduceMotion ? undefined : { rotate: [-16, 10, -4, 1.5, 0] }}
-        transition={{ duration: 3.2, ease: "easeOut", times: [0, 0.35, 0.6, 0.82, 1] }}
-      >
+      <g>
+        {animate && (
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            values="-16 50 50; 10 50 50; -4 50 50; 1.5 50 50; 0 50 50"
+            keyTimes="0; 0.35; 0.6; 0.82; 1"
+            calcMode="spline"
+            keySplines="0.22 1 0.36 1; 0.22 1 0.36 1; 0.22 1 0.36 1; 0.22 1 0.36 1"
+            dur="3.2s"
+            fill="freeze"
+          />
+        )}
         {/* East and west points, short and quiet */}
         <path d="M78 50 L50 54.5 L50 45.5 Z" fill={`url(#${id}-brass-h)`} fillOpacity={small ? 0.55 : 0.45} />
         <path d="M22 50 L50 54.5 L50 45.5 Z" fill={`url(#${id}-brass-h)`} fillOpacity={small ? 0.55 : 0.45} />
@@ -115,7 +133,7 @@ export function PyxisCompass({
         />
         {/* Light edge on the north point */}
         {!small && <path d="M50 8 L44 50 L50 50 Z" fill="#fff" fillOpacity="0.16" />}
-      </motion.g>
+      </g>
 
       {/* Pivot */}
       <circle cx="50" cy="50" r={small ? 4.2 : 3.4} fill="#07080b" stroke={`url(#${id}-brass)`} strokeWidth={sw} />
