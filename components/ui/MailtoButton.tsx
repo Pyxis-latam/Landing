@@ -1,3 +1,8 @@
+"use client";
+
+import type { MouseEvent } from "react";
+import { useContact } from "@/lib/contact/ContactContext";
+
 type MailtoButtonProps = {
   email: string;
   label: string;
@@ -21,6 +26,12 @@ const sizes = {
   sm: "px-4 py-2 text-[13px]",
 };
 
+/**
+ * Contact call to action. It is a real mailto: link, so middle-click,
+ * copy-link and assistive tech keep working; a plain click opens the contact
+ * panel instead, because mailto alone does nothing on machines without a
+ * default mail client.
+ */
 export function MailtoButton({
   email,
   label,
@@ -28,13 +39,22 @@ export function MailtoButton({
   variant = "solid",
   size = "md",
 }: MailtoButtonProps) {
+  const { available, openContact } = useContact();
   const href = subject
     ? `mailto:${email}?subject=${encodeURIComponent(subject)}`
     : `mailto:${email}`;
 
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!available) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    openContact();
+  };
+
   return (
     <a
       href={href}
+      onClick={handleClick}
       data-variant={variant}
       className={`${base} ${variants[variant]} ${sizes[size]}`}
     >

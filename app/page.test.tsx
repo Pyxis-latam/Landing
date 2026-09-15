@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import Home from "./page";
@@ -62,4 +62,16 @@ it("places the globe expansion map inside the Ventures narrative, after the Herm
   expect(
     ventures!.compareDocumentPosition(globe!) & Node.DOCUMENT_POSITION_FOLLOWING
   ).toBeTruthy();
+});
+
+it("opens the contact panel when the header CTA is pressed instead of relying on mailto alone", () => {
+  render(
+    <LanguageProvider>
+      <Home />
+    </LanguageProvider>
+  );
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  const ctas = screen.getAllByRole("link", { name: "Hablemos" });
+  fireEvent.click(ctas[0]);
+  expect(screen.getByRole("dialog")).toBeInTheDocument();
 });

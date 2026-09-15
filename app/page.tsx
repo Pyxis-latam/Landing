@@ -1,3 +1,4 @@
+import { ContactProvider } from "@/lib/contact/ContactContext";
 import { PageBackdrop } from "@/components/PageBackdrop";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -9,11 +10,12 @@ import { GlobeExpansion } from "@/components/GlobeExpansion";
 import { Team } from "@/components/Team";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
+import { ContactDialog } from "@/components/ContactDialog";
 import { Hairline } from "@/components/ui/Hairline";
 
 export default function Home() {
   return (
-    <>
+    <ContactProvider>
       <PageBackdrop />
       <Header />
       <main>
@@ -30,6 +32,7 @@ export default function Home() {
         <FinalCta />
       </main>
       <Footer />
-    </>
+      <ContactDialog />
+    </ContactProvider>
   );
 }
