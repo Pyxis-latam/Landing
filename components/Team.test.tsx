@@ -50,6 +50,13 @@ it("expands the correct card for Felipe", () => {
   );
   // the bio panel is now visible (text unique to the bio)
   expect(
-    screen.getByText(/Ingeniero Comercial UAI|Commercial Engineer/)
+    screen.getByText(/Magíster en Innovación y Emprendimiento|Master's in Innovation & Entrepreneurship/)
   ).toBeInTheDocument();
+});
+
+it("shows one credential line per founder without needing to expand the card", () => {
+  renderTeam();
+  expect(screen.getByText(/200\+ personas/)).toBeInTheDocument();
+  expect(screen.getByText(/Ingeniero Comercial UAI/)).toBeInTheDocument();
+  expect(screen.queryByRole("link", { name: /LinkedIn/i })).not.toBeInTheDocument();
 });

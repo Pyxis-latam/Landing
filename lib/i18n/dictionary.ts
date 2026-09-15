@@ -172,6 +172,7 @@ export const dictionaries = {
         {
           name: "Vicente Pareja",
           role: "Chief Executive Officer (CEO)",
+          headline: "Lideró la transformación de una corporación de 200+ personas. Antes, producto en startups de IA y aviación.",
           linkedin: "https://www.linkedin.com/in/vicentepareja/",
           initials: "VP",
           photo: "/team/vicente.jpg",
@@ -187,6 +188,7 @@ export const dictionaries = {
         {
           name: "Felipe Carvallo Lancellotti",
           role: "Chief Deployment Officer (CDO)",
+          headline: "Ingeniero Comercial UAI, Magíster en Innovación. Lidera cada despliegue dentro del cliente.",
           linkedin:
             "https://www.linkedin.com/in/felipe-carvallo-lancellotti-228615276/?locale=en",
           initials: "FC",
@@ -403,6 +405,7 @@ export const dictionaries = {
         {
           name: "Vicente Pareja",
           role: "Chief Executive Officer (CEO)",
+          headline: "Led the transformation of a 200+ person corporation. Before that, product at AI and aviation startups.",
           linkedin: "https://www.linkedin.com/in/vicentepareja/",
           initials: "VP",
           photo: "/team/vicente.jpg",
@@ -418,6 +421,7 @@ export const dictionaries = {
         {
           name: "Felipe Carvallo Lancellotti",
           role: "Chief Deployment Officer (CDO)",
+          headline: "Commercial Engineer (UAI), Master's in Innovation. Leads every deployment inside the client.",
           linkedin:
             "https://www.linkedin.com/in/felipe-carvallo-lancellotti-228615276/?locale=en",
           initials: "FC",

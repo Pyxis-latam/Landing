@@ -55,7 +55,7 @@ export default function OpengraphImage() {
             color: "#F2F1EE",
           }}
         >
-          Recomponemos empresas y construimos las que operan sin personas
+          Empresas que rinden más con las mismas personas. O con ninguna.
         </div>
         <div style={{ marginTop: 26, fontSize: 24, color: "#D9A54D" }}>
           Pyxis Labs · Pyxis Ventures · Santiago, Chile

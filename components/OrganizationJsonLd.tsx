@@ -8,7 +8,7 @@ const organization = {
   logo: `${SITE}/icon`,
   email: "pyxis.latam@gmail.com",
   description:
-    "Pyxis Labs recompone empresas existentes para hacerlas más eficientes y potentes sin cambiar su tamaño. Pyxis Ventures construye empresas que operan sin personas: Hermes, el Zero Man Wholesaler, es la primera.",
+    "Pyxis Labs recompone empresas medianas: procesos, equipo comercial e integraciones con el ERP que ya tienen. Pyxis Ventures construye empresas que operan sin personas. Hermes, distribuidora de insumos de oficina, es la primera.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Santiago",

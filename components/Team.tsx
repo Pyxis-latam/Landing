@@ -36,22 +36,27 @@ export function Team() {
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  className="group flex w-full items-center gap-5 p-5 text-left sm:p-6"
+                  className="group flex w-full items-start gap-5 p-5 text-left sm:p-6"
                 >
-                  <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-1 ring-pyxis-accent/40 ring-offset-2 ring-offset-pyxis-bg">
+                  <span className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full ring-1 ring-pyxis-accent/40 ring-offset-2 ring-offset-pyxis-bg">
                     <Image
                       src={member.photo}
                       alt={member.name}
-                      width={80}
-                      height={80}
-                      className="h-20 w-20 object-cover saturate-[0.85] transition-[filter,transform] duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
+                      width={96}
+                      height={96}
+                      className="h-24 w-24 object-cover saturate-[0.85] transition-[filter,transform] duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
                     />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="font-display block text-lg font-semibold tracking-[-0.01em] text-pyxis-fg transition-colors duration-300 group-hover:text-pyxis-accent-soft">
                       {member.name}
                     </span>
-                    <span className="mt-0.5 block text-sm text-pyxis-fg/60">{member.role}</span>
+                    <span className="mt-0.5 block font-mono-label text-[11px] tracking-[0.12em] text-pyxis-accent">
+                      {member.role}
+                    </span>
+                    <span className="mt-3 block text-sm leading-relaxed text-pyxis-fg/65">
+                      {member.headline}
+                    </span>
                   </span>
                   <motion.span
                     aria-hidden="true"

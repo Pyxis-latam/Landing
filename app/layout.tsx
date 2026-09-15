@@ -22,21 +22,21 @@ const mono = Geist_Mono({
 });
 
 const description =
-  "Pyxis Labs recompone empresas existentes para hacerlas más eficientes y potentes sin cambiar su tamaño. Pyxis Ventures construye empresas que operan sin personas: Hermes, el Zero Man Wholesaler, es la primera.";
+  "Pyxis Labs recompone empresas medianas: procesos, equipo comercial e integraciones con el ERP que ya tienen. Pyxis Ventures construye empresas que operan sin personas. Hermes, distribuidora de insumos de oficina, es la primera.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pyxis-latam.cl"),
-  title: "Pyxis — Recomponemos empresas y construimos las que operan sin personas",
+  title: "Pyxis — Empresas que rinden más con las mismas personas. O con ninguna.",
   description,
   openGraph: {
-    title: "Pyxis — Recomponemos empresas y construimos las que operan sin personas",
+    title: "Pyxis — Empresas que rinden más con las mismas personas. O con ninguna.",
     description,
     type: "website",
     locale: "es_ES",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pyxis — Recomponemos empresas y construimos las que operan sin personas",
+    title: "Pyxis — Empresas que rinden más con las mismas personas. O con ninguna.",
     description,
   },
 };

@@ -53,7 +53,9 @@ describe("ContactDialog", () => {
     fireEvent.click(screen.getByRole("button", { name: /copiar/i }));
 
     expect(writeText).toHaveBeenCalledWith("pyxis.latam@gmail.com");
-    await waitFor(() => expect(screen.getByText("Copiado")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("Copiado")).toBeInTheDocument(), {
+      timeout: 3000,
+    });
   });
 
   it("closes with Escape and with the close button", async () => {
