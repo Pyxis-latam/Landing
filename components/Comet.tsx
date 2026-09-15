@@ -26,7 +26,7 @@ export function Comet() {
         ease: "easeIn",
         times: [0, 0.08, 0.9, 1],
         repeat: Infinity,
-        repeatDelay: 9,
+        repeatDelay: 16,
       }}
     >
       <svg width="240" height="240" viewBox="0 0 240 240" fill="none">

@@ -59,11 +59,24 @@ profile (LinkedIn blocks automated scraping, so this step is manual).
 
 ## Space / constellation theme
 
-- `components/PyxisCompass.tsx` — the animated Pyxis compass shown next to the
-  wordmark (Pyxis is the constellation of the mariner's compass).
-- `components/Comet.tsx` — a comet that periodically streaks across the hero.
-- `components/ParticleField.tsx` — starfield with twinkling stars and occasional
-  shooting stars.
+Type: `Geist` (display and body), `Instrument Serif` italic for the one accented
+phrase in each headline (`components/ui/Emphasis.tsx`) and `Geist Mono` for the
+small labels. All three load through `next/font/google` in `app/layout.tsx`.
+
+- `components/PyxisCompass.tsx` — the animated Pyxis mark: a brass dial with a
+  settling north needle and the four stars of Pyxis (the constellation of the
+  mariner's compass). Below 48px it thickens its strokes and drops the
+  constellation lines; `app/icon.tsx` and `app/opengraph-image.tsx` carry static
+  versions of the same mark.
+- `components/PageBackdrop.tsx` — fixed layer behind the whole page: three
+  drifting nebula clouds (CSS, `app/globals.css`) plus the starfield.
+- `components/ParticleField.tsx` — DPR-aware starfield with depth: near stars are
+  larger, brighter, drift faster and parallax against the scroll; rare shooting
+  stars.
+- `components/Comet.tsx` — a comet that occasionally streaks across the hero.
+- `components/ui/SpotlightCard.tsx` — the glass panel used by the division and
+  team cards: hairline border, top light catch and a brass spotlight that
+  follows the cursor.
 - `components/GlobeExpansion.tsx` — a full-screen, photorealistic 3D night globe
   (three.js + WebGL) that spins from Chile → Mexico → Brazil & Paraguay when you
   press the arrows. It shows vector **country borders** (the focused country is

@@ -9,14 +9,16 @@ export const dictionaries = {
       talk: "Hablemos",
     },
     hero: {
-      eyebrow: "PYXIS",
+      eyebrow: "Labs y Ventures",
       headlinePre: "Recomponemos empresas y construimos las que operan",
       headlineEmphasis: "sin personas",
       subheadline:
         "Pyxis Labs rediseña la operación de empresas existentes para hacerlas más eficientes y más potentes, sin expandirlas ni achicarlas. Pyxis Ventures crea empresas que operan solas: Hermes es la primera.",
       cta: "Hablemos",
+      scrollCue: "Bajar",
     },
     socialProof: {
+      status: "En operación",
       text: "Pyxis Labs ya opera dentro de un retail de más de 100 personas. Hermes ya distribuye insumos de oficina en Chile.",
     },
     divisions: {
@@ -183,6 +185,8 @@ export const dictionaries = {
     footer: {
       email: "pyxis.latam@gmail.com",
       copyright: "Pyxis. Todos los derechos reservados.",
+      location: "Santiago, Chile",
+      tagline: "Labs · Ventures",
     },
   },
   en: {
@@ -195,14 +199,16 @@ export const dictionaries = {
       talk: "Let's talk",
     },
     hero: {
-      eyebrow: "PYXIS",
+      eyebrow: "Labs and Ventures",
       headlinePre: "We recompose companies and build the ones that run",
       headlineEmphasis: "without people",
       subheadline:
         "Pyxis Labs redesigns how existing companies operate to make them more efficient and more powerful, without growing or shrinking them. Pyxis Ventures builds companies that run on their own: Hermes is the first.",
       cta: "Let's talk",
+      scrollCue: "Scroll",
     },
     socialProof: {
+      status: "Live",
       text: "Pyxis Labs is already running inside a 100+ person retailer. Hermes is already distributing office supplies in Chile.",
     },
     divisions: {
@@ -369,6 +375,8 @@ export const dictionaries = {
     footer: {
       email: "pyxis.latam@gmail.com",
       copyright: "Pyxis. All rights reserved.",
+      location: "Santiago, Chile",
+      tagline: "Labs · Ventures",
     },
   },
 } as const;

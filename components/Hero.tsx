@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { ParticleField } from "./ParticleField";
 import { Comet } from "./Comet";
 import { PyxisCompass } from "./PyxisCompass";
 import { MailtoButton } from "./ui/MailtoButton";
@@ -18,40 +17,91 @@ export function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const headlineY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    shouldReduceMotion ? [0, 0] : [0, 80]
-  );
+  const headlineY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 90]);
+  const headlineOpacity = useTransform(scrollYProgress, [0, 0.7], [1, shouldReduceMotion ? 1 : 0.15]);
+
+  const words = t.hero.headlinePre.split(" ");
+  const enter = (i: number) =>
+    shouldReduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 18, filter: "blur(6px)" },
+          animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+          transition: { duration: 0.7, delay: 0.25 + i * 0.045, ease: [0.22, 1, 0.36, 1] as const },
+        };
 
   return (
     <section
       id="top"
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-pyxis-bg"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden"
     >
-      <ParticleField />
+      {/* Brass glow behind the mark, and a fade into the page at the bottom */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[38%] h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(217,165,77,0.16),transparent_62%)] blur-2xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-pyxis-bg"
+      />
       <Comet />
+
       <motion.div
-        style={{ y: headlineY }}
-        className="relative z-10 mx-auto max-w-4xl px-6 text-center"
+        style={{ y: headlineY, opacity: headlineOpacity }}
+        className="relative z-10 mx-auto max-w-5xl px-6 pb-28 pt-28 text-center"
       >
-        <div className="mb-6 flex flex-col items-center gap-3">
-          <PyxisCompass size={72} />
-          <p className="font-mono-label text-xs tracking-[0.3em] text-pyxis-accent">
+        <motion.div
+          className="mb-7 flex flex-col items-center gap-3"
+          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <PyxisCompass size={88} />
+          <p className="font-serif-accent text-xl italic text-pyxis-accent-soft/90">
             {t.hero.eyebrow}
           </p>
-        </div>
-        <h1 className="font-display text-4xl font-extrabold leading-tight text-pyxis-fg sm:text-6xl">
-          {t.hero.headlinePre} <Emphasis>{t.hero.headlineEmphasis}</Emphasis>
+        </motion.div>
+
+        <h1 className="font-display text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.035em] text-pyxis-fg sm:text-6xl md:text-[4.6rem]">
+          {words.map((word, i) => (
+            <motion.span key={`${word}-${i}`} className="inline-block" {...enter(i)}>
+              {word}
+              {i < words.length - 1 ? " " : ""}
+            </motion.span>
+          ))}{" "}
+          <Emphasis>{t.hero.headlineEmphasis}</Emphasis>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-pyxis-fg/80">
+
+        <motion.p
+          className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-pyxis-fg/70 sm:text-lg"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.75, ease: "easeOut" }}
+        >
           {t.hero.subheadline}
-        </p>
-        <div className="mt-10">
+        </motion.p>
+
+        <motion.div
+          className="mt-10"
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.95, ease: "easeOut" }}
+        >
           <MailtoButton email={t.footer.email} label={t.hero.cta} />
-        </div>
+        </motion.div>
       </motion.div>
+
+      <a
+        href="#divisions"
+        aria-label={t.hero.scrollCue}
+        className="absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 text-pyxis-fg/45 transition-colors hover:text-pyxis-accent md:[@media(min-height:880px)]:flex"
+      >
+        <span className="font-mono-label text-[10px] tracking-[0.3em]">{t.hero.scrollCue}</span>
+        <span className="block h-10 w-px overflow-hidden bg-pyxis-fg/10">
+          <span className="scroll-cue-line block h-full w-full bg-current" />
+        </span>
+      </a>
     </section>
   );
 }

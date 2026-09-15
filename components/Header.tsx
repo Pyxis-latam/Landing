@@ -12,6 +12,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -25,31 +26,40 @@ export function Header() {
   return (
     <header
       data-testid="header"
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-pyxis-bg/80 backdrop-blur-md" : "bg-transparent"
+      data-scrolled={scrolled ? "true" : "false"}
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-500 ${
+        scrolled
+          ? "border-pyxis-line bg-pyxis-bg/75 backdrop-blur-md"
+          : "border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-2">
-          <PyxisCompass size={28} />
-          <span className="font-display text-sm font-bold tracking-widest text-pyxis-fg">
+      <div
+        className={`mx-auto flex max-w-6xl items-center justify-between px-6 transition-[padding] duration-500 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
+      >
+        <a href="#top" className="group flex items-center gap-2.5" aria-label="Pyxis, inicio">
+          <PyxisCompass size={30} className="transition-transform duration-500 group-hover:rotate-[30deg]" />
+          <span className="font-display text-[13px] font-semibold tracking-[0.34em] text-pyxis-fg">
             PYXIS
           </span>
         </a>
-        <nav className="hidden gap-8 md:flex">
+
+        <nav className="hidden items-center gap-9 md:flex" aria-label="Secciones">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-pyxis-fg/80 hover:text-pyxis-accent"
+              className="relative py-1 text-[13.5px] text-pyxis-fg/70 transition-colors duration-300 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-pyxis-accent after:transition-transform after:duration-300 hover:text-pyxis-fg hover:after:scale-x-100"
             >
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-4">
+
+        <div className="flex items-center gap-5">
           <LanguageToggle />
-          <MailtoButton email={t.footer.email} label={t.cta.talk} />
+          <MailtoButton email={t.footer.email} label={t.cta.talk} variant="outline" size="sm" />
         </div>
       </div>
     </header>

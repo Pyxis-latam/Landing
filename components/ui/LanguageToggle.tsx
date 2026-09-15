@@ -10,7 +10,7 @@ export function LanguageToggle() {
       type="button"
       onClick={toggleLang}
       aria-label="Toggle language"
-      className="font-mono-label text-xs tracking-widest text-pyxis-fg/70 hover:text-pyxis-accent"
+      className="font-mono-label rounded-full border border-transparent px-2.5 py-1 text-[11px] tracking-[0.2em] text-pyxis-fg/60 transition-colors duration-300 hover:border-pyxis-line hover:text-pyxis-accent-soft"
     >
       {lang === "es" ? "EN" : "ES"}
     </button>

@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-pyxis-bg: #050505;
+  --color-pyxis-bg: #07080b;
   --color-pyxis-fg: #f2f1ee;
   --color-pyxis-accent: #d9a54d;
-  --color-pyxis-panel: #12141a;
+  --color-pyxis-accent-soft: #eac57c;
+  --color-pyxis-panel: #0e1016;
+  --color-pyxis-line: rgba(242, 241, 238, 0.08);
   --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-serif-accent: var(--font-serif-accent), "Iowan Old Style", Georgia, serif;
   --font-mono-label: var(--font-mono-label), ui-monospace, monospace;
 }
 
@@ -20,23 +23,159 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  /* keep anchored sections clear of the fixed header */
+  scroll-padding-top: 5.5rem;
+}
+
 body {
   position: relative;
   background-color: var(--color-pyxis-bg);
-  /* Faint nebula clouds drifting behind the whole page */
-  background-image:
-    radial-gradient(40% 50% at 12% 8%, rgba(217, 165, 77, 0.07), transparent 60%),
-    radial-gradient(45% 55% at 88% 18%, rgba(70, 100, 165, 0.09), transparent 65%),
-    radial-gradient(55% 60% at 50% 105%, rgba(217, 165, 77, 0.05), transparent 70%);
-  background-attachment: fixed;
+  font-feature-settings: "ss01", "cv11";
 }
 
+/* Film grain over everything, so the black never reads as flat plastic */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 40;
-  opacity: 0.035;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+::selection {
+  background: rgba(217, 165, 77, 0.35);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-pyxis-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* A gold hairline that fades at both ends. Used between sections and in the footer. */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 165, 77, 0.28) 25%,
+    rgba(217, 165, 77, 0.28) 75%,
+    transparent
+  );
+}
+
+/* Live status dot (social proof strip) */
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: var(--color-pyxis-accent-soft);
+  box-shadow: 0 0 10px rgba(234, 197, 124, 0.7);
+}
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid rgba(234, 197, 124, 0.6);
+  animation: status-ping 2.4s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+}
+@keyframes status-ping {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  70%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Nebula clouds that drift very slowly behind the whole page */
+.nebula {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  will-change: transform;
+}
+.nebula-a {
+  width: 60vmax;
+  height: 60vmax;
+  left: -18vmax;
+  top: -22vmax;
+  background: radial-gradient(circle, rgba(217, 165, 77, 0.11), transparent 62%);
+  animation: nebula-drift-a 90s ease-in-out infinite alternate;
+}
+.nebula-b {
+  width: 70vmax;
+  height: 70vmax;
+  right: -28vmax;
+  top: 6vmax;
+  background: radial-gradient(circle, rgba(64, 92, 160, 0.13), transparent 62%);
+  animation: nebula-drift-b 120s ease-in-out infinite alternate;
+}
+.nebula-c {
+  width: 55vmax;
+  height: 55vmax;
+  left: 20vmax;
+  bottom: -30vmax;
+  background: radial-gradient(circle, rgba(217, 165, 77, 0.07), transparent 62%);
+  animation: nebula-drift-a 150s ease-in-out infinite alternate-reverse;
+}
+@keyframes nebula-drift-a {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(9vmax, 6vmax, 0);
+  }
+}
+@keyframes nebula-drift-b {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-10vmax, 8vmax, 0);
+  }
+}
+
+/* Scroll cue line in the hero */
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.scroll-cue-line {
+  animation: scroll-cue 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }

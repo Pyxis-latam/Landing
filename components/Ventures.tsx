@@ -10,14 +10,14 @@ export function Ventures() {
   const { t } = useLanguage();
 
   return (
-    <section id="ventures" className="mx-auto max-w-5xl px-6 pt-32 pb-16">
+    <section id="ventures" className="mx-auto max-w-5xl px-6 pb-20 pt-36">
       <RevealOnScroll>
         <SectionEyebrow>{t.ventures.eyebrow}</SectionEyebrow>
-        <h2 className="font-display mt-4 text-3xl font-bold text-pyxis-fg sm:text-5xl">
+        <h2 className="font-display mt-5 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-pyxis-fg sm:text-5xl md:text-6xl">
           {t.ventures.headlinePre}{" "}
           <Emphasis>{t.ventures.headlineEmphasis}</Emphasis>
         </h2>
-        <p className="mt-6 max-w-2xl text-lg text-pyxis-fg/80">
+        <p className="mt-7 max-w-[60ch] text-base leading-relaxed text-pyxis-fg/65 sm:text-lg">
           {t.ventures.body}
         </p>
       </RevealOnScroll>

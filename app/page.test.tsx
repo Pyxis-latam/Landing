@@ -11,6 +11,7 @@ it("renders every section of the landing page", () => {
   );
 
   expect(screen.getAllByText("PYXIS").length).toBeGreaterThan(0);
+  expect(screen.getByTestId("particle-field")).toBeInTheDocument();
   expect(screen.getByText("sin personas")).toBeInTheDocument();
   expect(screen.getByRole("heading", { level: 3, name: "Pyxis Labs" })).toBeInTheDocument();
   expect(screen.getByText("el mismo tamaño")).toBeInTheDocument();

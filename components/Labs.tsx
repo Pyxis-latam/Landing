@@ -11,21 +11,23 @@ export function Labs() {
   const { t } = useLanguage();
 
   return (
-    <section id="labs" className="mx-auto max-w-5xl px-6 py-32">
+    <section id="labs" className="mx-auto max-w-5xl px-6 py-36">
       <RevealOnScroll>
         <SectionEyebrow>{t.labs.eyebrow}</SectionEyebrow>
-        <h2 className="font-display mt-4 text-3xl font-bold text-pyxis-fg sm:text-5xl">
+        <h2 className="font-display mt-5 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-pyxis-fg sm:text-5xl md:text-6xl">
           {t.labs.headlinePre} <Emphasis>{t.labs.headlineEmphasis}</Emphasis>
         </h2>
-        <p className="mt-6 max-w-2xl text-lg text-pyxis-fg/80">{t.labs.body}</p>
+        <p className="mt-7 max-w-[60ch] text-base leading-relaxed text-pyxis-fg/65 sm:text-lg">
+          {t.labs.body}
+        </p>
       </RevealOnScroll>
 
       <StepGrid steps={t.labs.steps} />
 
-      <div className="mt-32">
+      <div className="mt-36">
         <RevealOnScroll>
           <SectionEyebrow>{t.labs.phasesEyebrow}</SectionEyebrow>
-          <h3 className="font-display mt-4 text-2xl font-bold text-pyxis-fg sm:text-4xl">
+          <h3 className="font-display mt-5 text-3xl font-semibold leading-[1.05] tracking-[-0.03em] text-pyxis-fg sm:text-4xl md:text-5xl">
             {t.labs.phasesHeadlinePre}{" "}
             <Emphasis>{t.labs.phasesHeadlineEmphasis}</Emphasis>
           </h3>

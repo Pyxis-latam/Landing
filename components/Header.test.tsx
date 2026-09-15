@@ -17,15 +17,17 @@ describe("Header", () => {
     expect(screen.getByText("Pyxis Ventures")).toBeInTheDocument();
   });
 
-  it("shows a solid background after scrolling", () => {
+  it("shows a solid background and compresses after scrolling", () => {
     renderHeader();
     const header = screen.getByTestId("header");
     expect(header.className).toContain("bg-transparent");
+    expect(header).toHaveAttribute("data-scrolled", "false");
 
     Object.defineProperty(window, "scrollY", { value: 100, writable: true });
     fireEvent.scroll(window);
 
     expect(header.className).toContain("backdrop-blur-md");
+    expect(header).toHaveAttribute("data-scrolled", "true");
   });
 
   it("includes a mailto CTA", () => {
