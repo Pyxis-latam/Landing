@@ -3,9 +3,8 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { Comet } from "./Comet";
 import { PyxisCompass } from "./PyxisCompass";
-import { MailtoButton } from "./ui/MailtoButton";
+import { ScheduleButton } from "./ui/ScheduleButton";
 import { Emphasis } from "./ui/Emphasis";
 
 export function Hero() {
@@ -21,9 +20,8 @@ export function Hero() {
   const headlineOpacity = useTransform(scrollYProgress, [0, 0.7], [1, shouldReduceMotion ? 1 : 0.15]);
 
   const words = t.hero.headlinePre.split(" ");
-  // The headline and subheadline are the page's largest paint, so they enter
-  // with motion and blur only, never from opacity 0: the text is on screen
-  // from the first paint instead of waiting for hydration.
+  // The headline is the page's largest paint, so it enters with motion and
+  // blur only, never from opacity 0: the text is on screen from the first paint.
   const enter = (i: number) =>
     shouldReduceMotion
       ? {}
@@ -48,7 +46,6 @@ export function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-pyxis-bg"
       />
-      <Comet />
 
       <motion.div
         style={{ y: headlineY, opacity: headlineOpacity }}
@@ -86,12 +83,15 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="mt-10"
+          className="mt-10 flex flex-col items-center gap-4"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.95, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
         >
-          <MailtoButton email={t.footer.email} label={t.hero.cta} />
+          <ScheduleButton label={t.cta.schedule} />
+          <span className="font-mono-label text-[11px] tracking-[0.14em] text-pyxis-fg/45">
+            {t.cta.scheduleHint}
+          </span>
         </motion.div>
       </motion.div>
 

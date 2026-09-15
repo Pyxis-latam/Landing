@@ -88,10 +88,20 @@ small labels. All three load through `next/font/google` in `app/layout.tsx`.
 
 ## Contact
 
-Every "Hablemos" button is a real `mailto:` link, but a plain click opens
+The primary call to action is `components/ui/ScheduleButton.tsx`, a link to
+Vicente's Cal.com page (`SCHEDULE_URL` in that file). The header's "Hablemos"
+is a real `mailto:` link whose plain click opens
 `components/ContactDialog.tsx` (state in `lib/contact/ContactContext.tsx`)
-with the address, a Copy button and a Gmail compose link, because `mailto:`
-alone does nothing on machines without a default mail client.
+with the calendar link, the address with a Copy button and a Gmail compose
+link, because `mailto:` alone does nothing on machines without a default
+mail client.
+
+## Labs content
+
+`components/LabsCase.tsx` is the anonymised case note (B2B office-supplies
+distributor). The four engagement stages (Auditoría, Diagnóstico y plan,
+Implementación, Postventa) and the case copy live in `lib/i18n/dictionary.ts`
+under `labs.steps` and `labs.case`.
 
 ## Site plumbing
 

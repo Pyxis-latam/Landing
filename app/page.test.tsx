@@ -15,11 +15,11 @@ it("renders every section of the landing page", () => {
 
   expect(screen.getAllByText("PYXIS").length).toBeGreaterThan(0);
   expect(screen.getByTestId("particle-field")).toBeInTheDocument();
-  expect(screen.getByText("sin personas")).toBeInTheDocument();
+  expect(screen.getByText("O con ninguna.")).toBeInTheDocument();
   expect(screen.getByRole("heading", { level: 3, name: "Pyxis Labs" })).toBeInTheDocument();
-  expect(screen.getByText("el mismo tamaño")).toBeInTheDocument();
+  expect(screen.getByText("más potente")).toBeInTheDocument();
   expect(screen.getByText("Zero Man Wholesaler")).toBeInTheDocument();
-  expect(screen.getByText("Retail de 100 personas")).toBeInTheDocument();
+  expect(screen.getByText("Distribuidora B2B de 100 personas")).toBeInTheDocument();
   expect(screen.getByText("Vicente Pareja")).toBeInTheDocument();
 });
 
@@ -34,8 +34,8 @@ it("switches the whole page to English when the language toggle is clicked", asy
   const toggles = screen.getAllByRole("button", { name: /toggle language/i });
   await user.click(toggles[0]);
 
-  expect(screen.getByText("without people")).toBeInTheDocument();
-  expect(screen.getByText("the same size")).toBeInTheDocument();
+  expect(screen.getByText("Or with none.")).toBeInTheDocument();
+  expect(screen.getByText("more powerful")).toBeInTheDocument();
   expect(screen.getByText("Furniture and construction")).toBeInTheDocument();
 });
 

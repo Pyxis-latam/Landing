@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { RevealOnScroll } from "./ui/RevealOnScroll";
-import { MailtoButton } from "./ui/MailtoButton";
+import { ScheduleButton } from "./ui/ScheduleButton";
 import { Emphasis } from "./ui/Emphasis";
 import { PyxisCompass } from "./PyxisCompass";
 
@@ -32,10 +32,10 @@ export function FinalCta() {
             {t.finalCta.body}
           </p>
           <div className="mt-10 flex flex-col items-center gap-5">
-            <MailtoButton email={t.footer.email} label={t.finalCta.cta} />
+            <ScheduleButton label={t.cta.schedule} />
             <a
               href={`mailto:${t.footer.email}`}
-              className="font-mono-label text-xs tracking-[0.12em] text-pyxis-fg/45 transition-colors hover:text-pyxis-accent-soft"
+              className="font-mono-label text-xs tracking-[0.12em] text-pyxis-fg/50 transition-colors hover:text-pyxis-accent-soft"
             >
               {t.footer.email}
             </a>

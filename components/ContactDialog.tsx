@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { useContact } from "@/lib/contact/ContactContext";
 import { PyxisCompass } from "./PyxisCompass";
+import { ScheduleButton } from "./ui/ScheduleButton";
 
 /**
  * Contact panel opened by every "Hablemos" button. A bare mailto: link does
@@ -127,17 +128,20 @@ export function ContactDialog() {
                 </button>
               </div>
 
-              <a
-                href={gmailHref}
-                target="_blank"
-                rel="noreferrer"
-                className="group mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#eac57c_0%,#d9a54d_55%,#c9933c_100%)] px-5 py-3 text-sm font-medium text-pyxis-bg shadow-[0_10px_30px_-10px_rgba(217,165,77,0.55)] transition-transform hover:-translate-y-0.5 active:translate-y-0"
-              >
-                {t.contact.gmail}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
-                  <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
+              <div className="mt-5 flex flex-col gap-3">
+                <ScheduleButton label={t.contact.schedule} className="w-full justify-center" />
+                <a
+                  href={gmailHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-pyxis-accent/35 px-5 py-3 text-sm font-medium text-pyxis-fg/90 transition-colors hover:border-pyxis-accent hover:bg-pyxis-accent/10 hover:text-pyxis-accent-soft"
+                >
+                  {t.contact.gmail}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                    <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </motion.div>
         </motion.div>

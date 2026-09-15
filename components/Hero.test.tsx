@@ -10,12 +10,16 @@ function renderHero() {
   );
 }
 
-it("renders the Spanish headline and CTA", () => {
+it("renders the Spanish headline with the closing phrase accented", () => {
   renderHero();
-  expect(screen.getByText("sin personas")).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: "Hablemos" })).toHaveAttribute(
+  expect(screen.getByText("O con ninguna.")).toBeInTheDocument();
+});
+
+it("leads with the calendar CTA naming the founder", () => {
+  renderHero();
+  expect(screen.getByRole("link", { name: /agenda 30 min con vicente/i })).toHaveAttribute(
     "href",
-    expect.stringContaining("mailto:")
+    expect.stringContaining("cal.com/vicente-pareja")
   );
 });
 
@@ -27,8 +31,5 @@ it("names both divisions above the headline instead of repeating the wordmark", 
 
 it("offers a scroll cue that points to the first section", () => {
   renderHero();
-  expect(screen.getByRole("link", { name: /bajar/i })).toHaveAttribute(
-    "href",
-    "#divisions"
-  );
+  expect(screen.getByRole("link", { name: /bajar/i })).toHaveAttribute("href", "#divisions");
 });

@@ -11,7 +11,7 @@ it("renders a live status label followed by the qualitative proof line", () => {
   expect(screen.getByText("En operación")).toBeInTheDocument();
   expect(
     screen.getByText(
-      "Pyxis Labs ya opera dentro de un retail de más de 100 personas. Hermes ya distribuye insumos de oficina en Chile."
+      "Pyxis Labs ya recompuso una distribuidora B2B de 100 personas. Hermes ya despacha insumos de oficina en Chile."
     )
   ).toBeInTheDocument();
 });

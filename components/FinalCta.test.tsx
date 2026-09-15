@@ -2,15 +2,19 @@ import { render, screen } from "@testing-library/react";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import { FinalCta } from "./FinalCta";
 
-it("renders the closing statement and mailto CTA", () => {
+it("renders the closing statement, the calendar CTA and the email as fallback", () => {
   render(
     <LanguageProvider>
       <FinalCta />
     </LanguageProvider>
   );
   expect(screen.getByText("sin ser más grande")).toBeInTheDocument();
-  expect(screen.getByText("Hablemos").closest("a")).toHaveAttribute(
+  expect(screen.getByRole("link", { name: /agenda 30 min con vicente/i })).toHaveAttribute(
     "href",
-    expect.stringContaining("mailto:pyxis.latam@gmail.com")
+    expect.stringContaining("cal.com/vicente-pareja")
+  );
+  expect(screen.getByRole("link", { name: "pyxis.latam@gmail.com" })).toHaveAttribute(
+    "href",
+    "mailto:pyxis.latam@gmail.com"
   );
 });

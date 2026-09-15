@@ -67,6 +67,20 @@ export function GlobeExpansion() {
   const { t, lang } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const [step, setStep] = useState(0);
+  // The globe walks through the countries on its own until the visitor
+  // takes the controls; from then on it only moves when asked.
+  const [manual, setManual] = useState(false);
+  const go = (next: number | ((s: number) => number)) => {
+    setManual(true);
+    setStep(next);
+  };
+  useEffect(() => {
+    if (manual) return;
+    const id = window.setInterval(() => {
+      setStep((s) => (s + 1) % STEPS.length);
+    }, 6000);
+    return () => window.clearInterval(id);
+  }, [manual]);
 
   const mountRef = useRef<HTMLDivElement>(null);
   const targetQuatRef = useRef(orientationFor(STEPS[0].lat, STEPS[0].lon));
@@ -357,7 +371,7 @@ export function GlobeExpansion() {
       {/* Arrows */}
       <button
         type="button"
-        onClick={() => setStep((s) => Math.max(0, s - 1))}
+        onClick={() => go((s) => Math.max(0, s - 1))}
         disabled={atStart}
         aria-label={t.expansion.prevLabel}
         className={`absolute left-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-pyxis-fg/20 bg-pyxis-bg/50 text-pyxis-fg backdrop-blur transition sm:left-8 ${
@@ -370,7 +384,7 @@ export function GlobeExpansion() {
       </button>
       <button
         type="button"
-        onClick={() => setStep((s) => Math.min(STEPS.length - 1, s + 1))}
+        onClick={() => go((s) => Math.min(STEPS.length - 1, s + 1))}
         disabled={atEnd}
         aria-label={t.expansion.nextLabel}
         className={`absolute right-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-pyxis-fg/20 bg-pyxis-bg/50 text-pyxis-fg backdrop-blur transition sm:right-8 ${
@@ -408,7 +422,7 @@ export function GlobeExpansion() {
             <button
               key={s.title}
               type="button"
-              onClick={() => setStep(i)}
+              onClick={() => go(i)}
               aria-label={s.title}
               aria-current={i === step}
               className={`h-1.5 rounded-full transition-all duration-500 ${

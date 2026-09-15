@@ -69,3 +69,11 @@ describe("ContactDialog", () => {
     await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
   });
 });
+
+it("leads with the calendar link inside the panel", () => {
+  renderWithDialog();
+  fireEvent.click(screen.getByRole("link", { name: "Hablemos" }));
+  expect(
+    screen.getByRole("dialog").querySelector('a[href^="https://cal.com/vicente-pareja"]')
+  ).not.toBeNull();
+});

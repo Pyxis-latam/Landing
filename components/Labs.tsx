@@ -7,6 +7,7 @@ import { Emphasis } from "./ui/Emphasis";
 import { StepGrid } from "./ui/StepGrid";
 import { PhaseTimeline } from "./ui/PhaseTimeline";
 import { Recomposition } from "./diagrams/Recomposition";
+import { LabsCase } from "./LabsCase";
 
 export function Labs() {
   const { t } = useLanguage();
@@ -19,7 +20,7 @@ export function Labs() {
           <h2 className="font-display mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-pyxis-fg sm:text-5xl md:text-6xl">
             {t.labs.headlinePre} <Emphasis>{t.labs.headlineEmphasis}</Emphasis>
           </h2>
-          <p className="mt-7 max-w-[60ch] text-base leading-relaxed text-pyxis-fg/65 sm:text-lg">
+          <p className="mt-7 max-w-[58ch] text-base leading-relaxed text-pyxis-fg/65 sm:text-lg">
             {t.labs.body}
           </p>
         </RevealOnScroll>
@@ -30,7 +31,14 @@ export function Labs() {
         </RevealOnScroll>
       </div>
 
-      <StepGrid steps={t.labs.steps} />
+      <div className="mt-28">
+        <RevealOnScroll>
+          <SectionEyebrow>{t.labs.processEyebrow}</SectionEyebrow>
+        </RevealOnScroll>
+        <StepGrid steps={t.labs.steps} />
+      </div>
+
+      <LabsCase />
 
       <div className="mt-36">
         <RevealOnScroll>
