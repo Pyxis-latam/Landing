@@ -13,8 +13,8 @@ it("renders the closing statement, the calendar CTA and the email as fallback", 
     "href",
     expect.stringContaining("cal.com/vicente-pareja")
   );
-  expect(screen.getByRole("link", { name: "pyxis.latam@gmail.com" })).toHaveAttribute(
+  expect(screen.getByRole("link", { name: "equipo@pyxis-latam.cl" })).toHaveAttribute(
     "href",
-    "mailto:pyxis.latam@gmail.com"
+    "mailto:equipo@pyxis-latam.cl"
   );
 });

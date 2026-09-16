@@ -35,7 +35,7 @@ describe("Header", () => {
     const cta = screen.getByText("Hablemos");
     expect(cta.closest("a")).toHaveAttribute(
       "href",
-      expect.stringContaining("mailto:pyxis.latam@gmail.com")
+      expect.stringContaining("mailto:equipo@pyxis-latam.cl")
     );
   });
 });

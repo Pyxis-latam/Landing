@@ -3,8 +3,9 @@
 Landing page for Pyxis, a group with two divisions:
 
 - **Pyxis Labs** — recomposes existing companies: makes them more efficient and
-  more powerful without growing or shrinking them. Pilot: a 100+ person retailer
-  in Chile; next verticals are the retail niche, then furniture and construction.
+  more powerful without growing or shrinking them. First case: a 100-person B2B
+  office-supplies distributor in Chile; next verticals are the retail niche,
+  then furniture and construction.
 - **Pyxis Ventures** — builds companies that run without people. The first is
   **Hermes**, the "Zero Man Wholesaler": a distributor of inks, cartridges and
   printers piloting in Chile and expanding country by country.
@@ -42,7 +43,7 @@ npm test
 4. Click **Deploy**.
 
 The page is fully static (no environment variables, no API routes, no database) —
-the primary call to action is a `mailto:pyxis.latam@gmail.com` link, so there is
+the primary call to action is a `mailto:equipo@pyxis-latam.cl` link, so there is
 nothing to configure beyond connecting the repo.
 
 ## Team photos and bios
@@ -73,7 +74,6 @@ small labels. All three load through `next/font/google` in `app/layout.tsx`.
 - `components/ParticleField.tsx` — DPR-aware starfield with depth: near stars are
   larger, brighter, drift faster and parallax against the scroll; rare shooting
   stars.
-- `components/Comet.tsx` — a comet that occasionally streaks across the hero.
 - `components/ui/SpotlightCard.tsx` — the glass panel used by the division and
   team cards: hairline border, top light catch and a brass spotlight that
   follows the cursor.
@@ -110,9 +110,13 @@ under `labs.steps` and `labs.case`.
 and `components/OrganizationJsonLd.tsx` (schema.org Organization). The
 language choice persists in `localStorage` under `pyxis-lang`; the header
 highlights the section on screen via `lib/useActiveSection.ts`.
+
+## Globe
+
 - `components/GlobeExpansion.tsx` — a full-screen, photorealistic 3D night globe
-  (three.js + WebGL) that spins from Chile → Mexico → Brazil & Paraguay when you
-  press the arrows. It shows vector **country borders** (the focused country is
+  (three.js + WebGL) that spins from Chile → Mexico → Brazil & Paraguay on its
+  own every six seconds, or when you press the arrows (which stops the
+  auto-advance). It shows vector **country borders** (the focused country is
   highlighted in gold) and **callout labels** (a line linking each country to a
   name card) that track the country as the globe rotates. Assets live in
   `public/globe/`: `earth-night.jpg` (4096×2048 NASA Black Marble, via the

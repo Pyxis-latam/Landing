@@ -9,7 +9,7 @@ it("emits schema.org Organization data for Pyxis with its founders", () => {
   expect(data["@type"]).toBe("Organization");
   expect(data.name).toBe("Pyxis");
   expect(data.url).toBe("https://www.pyxis-latam.cl");
-  expect(data.email).toBe("pyxis.latam@gmail.com");
+  expect(data.email).toBe("equipo@pyxis-latam.cl");
   expect(data.founder.map((f: { name: string }) => f.name)).toEqual([
     "Vicente Pareja",
     "Felipe Carvallo Lancellotti",

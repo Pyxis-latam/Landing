@@ -8,7 +8,7 @@ function renderWithDialog() {
   return render(
     <LanguageProvider>
       <ContactProvider>
-        <MailtoButton email="pyxis.latam@gmail.com" label="Hablemos" />
+        <MailtoButton email="equipo@pyxis-latam.cl" label="Hablemos" />
         <ContactDialog />
       </ContactProvider>
     </LanguageProvider>
@@ -24,7 +24,7 @@ describe("ContactDialog", () => {
 
     const dialog = screen.getByRole("dialog");
     expect(dialog).toBeInTheDocument();
-    expect(dialog).toHaveTextContent("pyxis.latam@gmail.com");
+    expect(dialog).toHaveTextContent("equipo@pyxis-latam.cl");
   });
 
   it("offers Gmail as the one way to write, addressed to Pyxis, and no mail-app button", () => {
@@ -36,7 +36,7 @@ describe("ContactDialog", () => {
       "href",
       expect.stringContaining("mail.google.com/mail/?view=cm")
     );
-    expect(gmail).toHaveAttribute("href", expect.stringContaining("pyxis.latam%40gmail.com"));
+    expect(gmail).toHaveAttribute("href", expect.stringContaining("equipo%40pyxis-latam.cl"));
     expect(gmail).toHaveAttribute("target", "_blank");
 
     expect(screen.queryByRole("link", { name: /app de correo|mail app/i })).not.toBeInTheDocument();
@@ -52,7 +52,7 @@ describe("ContactDialog", () => {
     fireEvent.click(screen.getByRole("link", { name: "Hablemos" }));
     fireEvent.click(screen.getByRole("button", { name: /copiar/i }));
 
-    expect(writeText).toHaveBeenCalledWith("pyxis.latam@gmail.com");
+    expect(writeText).toHaveBeenCalledWith("equipo@pyxis-latam.cl");
     await waitFor(() => expect(screen.getByText("Copiado")).toBeInTheDocument(), {
       timeout: 3000,
     });

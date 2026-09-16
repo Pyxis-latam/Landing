@@ -3,24 +3,24 @@ import { MailtoButton } from "./MailtoButton";
 
 describe("MailtoButton", () => {
   it("renders a plain mailto link without a subject", () => {
-    render(<MailtoButton email="pyxis.latam@gmail.com" label="Hablemos" />);
+    render(<MailtoButton email="equipo@pyxis-latam.cl" label="Hablemos" />);
     expect(screen.getByRole("link", { name: "Hablemos" })).toHaveAttribute(
       "href",
-      "mailto:pyxis.latam@gmail.com"
+      "mailto:equipo@pyxis-latam.cl"
     );
   });
 
   it("encodes the subject when provided", () => {
     render(
       <MailtoButton
-        email="pyxis.latam@gmail.com"
+        email="equipo@pyxis-latam.cl"
         label="Hablemos"
         subject="Hola Pyxis"
       />
     );
     expect(screen.getByRole("link", { name: "Hablemos" })).toHaveAttribute(
       "href",
-      "mailto:pyxis.latam@gmail.com?subject=Hola%20Pyxis"
+      "mailto:equipo@pyxis-latam.cl?subject=Hola%20Pyxis"
     );
   });
 

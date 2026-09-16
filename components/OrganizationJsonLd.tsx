@@ -6,7 +6,7 @@ const organization = {
   name: "Pyxis",
   url: SITE,
   logo: `${SITE}/icon`,
-  email: "pyxis.latam@gmail.com",
+  email: "equipo@pyxis-latam.cl",
   description:
     "Pyxis Labs recompone empresas medianas: procesos, equipo comercial e integraciones con el ERP que ya tienen. Pyxis Ventures construye empresas que operan sin personas. Hermes, distribuidora de insumos de oficina, es la primera.",
   address: {

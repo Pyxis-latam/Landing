@@ -12,9 +12,9 @@ function renderFooter() {
 
 it("renders contact email and current year", () => {
   renderFooter();
-  expect(screen.getByText("pyxis.latam@gmail.com")).toHaveAttribute(
+  expect(screen.getByText("equipo@pyxis-latam.cl")).toHaveAttribute(
     "href",
-    "mailto:pyxis.latam@gmail.com"
+    "mailto:equipo@pyxis-latam.cl"
   );
   expect(
     screen.getByText(new RegExp(`© ${new Date().getFullYear()}`))

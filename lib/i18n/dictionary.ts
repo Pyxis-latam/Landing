@@ -226,7 +226,7 @@ export const dictionaries = {
       subject: "Hablemos — Pyxis",
     },
     footer: {
-      email: "pyxis.latam@gmail.com",
+      email: "equipo@pyxis-latam.cl",
       copyright: "Pyxis. Todos los derechos reservados.",
       location: "Santiago, Chile",
       tagline: "Labs · Ventures",
@@ -459,7 +459,7 @@ export const dictionaries = {
       subject: "Let's talk — Pyxis",
     },
     footer: {
-      email: "pyxis.latam@gmail.com",
+      email: "equipo@pyxis-latam.cl",
       copyright: "Pyxis. All rights reserved.",
       location: "Santiago, Chile",
       tagline: "Labs · Ventures",
